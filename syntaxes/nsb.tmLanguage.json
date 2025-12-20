@@ -94,11 +94,6 @@
         }
       ]
     },
-    "languages":{
-      "patterns": [
-        {}
-      ]
-    },
     "special-args":{
       "patterns": [
         {

@@ -1,18 +1,18 @@
 {
-  "name": "tagscript-coloring",
-  "displayName": "TagScript Coloring",
-  "description": "NotSoBot TagScript Coloring based on the web-version, but for VSCode",
+  "name": "tagscript-support",
+  "displayName": "NotSoBot TagScript Support",
+  "description": "NotSoBot TagScript Support based on the web-version, but for VSCode, adding syntax hightlight, code snippets, and more.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.107.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages","Snippets"
   ],
   "contributes": {
     "languages": [{
       "id": "nsb",
-      "aliases": ["NotSoBot TagScript Script", "nsb"],
+      "aliases": ["NotSoBot TagScript Script", "NotSoBot TagScript", "nsb"],
       "extensions": [".nsb",".nstb",".mnsb",".mnstb"],
       "configuration": "./language-configuration.json"
     }],
