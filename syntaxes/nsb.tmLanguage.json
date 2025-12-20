@@ -1,6 +1,6 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "NotSoBot TagScript Script",
+	"name": "NotSoBot TagScript",
 	"patterns": [{ "include": "#expression" }],
 	"repository": {
 		"expression": {

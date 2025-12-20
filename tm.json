@@ -1,0 +1,133 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "NotSoBot TagScript",
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.nsb",
+      "match": "//.*$"
+    },
+    {
+      "name": "comment.block.nsb",
+      "begin": "/\\*",
+      "end": "\\*/"
+    },
+    {
+      "name": "punctuation.brace.curly.open.nsb",
+      "match": "\\{"
+    },
+    {
+      "name": "punctuation.brace.curly.close.nsb",
+      "match": "\\}"
+    },
+    {
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.tag.begin.nsb" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.tag.end.nsb" }
+      },
+      "name": "meta.tag.nsb",
+      "patterns": [
+        {
+          "name": "constant.character.escape.nsb",
+          "match": "\\\\[\\{\\}]"
+        },
+        {
+          "name": "entity.name.tag.command.nsb",
+          "match": "^[^:\\|\\}\\s]+(?=:|\\})"
+        },
+        {
+          "name": "punctuation.separator.colon.nsb",
+          "match": ":"
+        },
+        {
+          "name": "punctuation.separator.pipe.nsb",
+          "match": "\\|"
+        },
+        {
+          "name": "string.quoted.double.nsb",
+          "begin": "\"",
+          "end": "\"",
+          "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.nsb" } },
+          "endCaptures": { "0": { "name": "punctuation.definition.string.end.nsb" } },
+          "patterns": [
+            { "name": "constant.character.escape.nsb", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.unquoted.argument.nsb",
+          "match": "[^\\|\\}]+"
+        }
+      ]
+    },
+    {
+      "name": "invalid.illegal.nsb",
+      "match": "\\{\\{|\\}\\}"
+    },
+    {
+      "include": "#command-names"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#booleans"
+    },
+    {
+      "include": "#special-args"
+    }
+  ],
+  "repository": {
+    "command-names": {
+      "patterns": [
+        {
+          "name": "support.function.nsb",
+          "match": "\\b(js|javascript|python|py|lua|ai|edit|editurl|imagine|imagineurl|identify|ocr|transcribe|translate|nsfwfilter|api\\\\.create\\\\.reminder|api\\\\.utilities\\\\.locations|api\\\\.utilities\\\\.weather|api\\\\.search\\\\.duckduckgo\\\\.images|api\\\\.search\\\\.imgur|search\\\\.duckduckgo\\\\.images|search\\\\.google\\\\.images|search\\\\.youtube|arg|argsafe|args|argslen|argssafe|attachment|last_attachment|attachmentspoiler|attachmenttext|attachmentvoice|discord|componentjson|componentsontimeout|embedjson|pagejson|download|downloadfromhtml|request|hastebin|ignore|note|eval|evalsilent|exit|mediascript|mediascriptmaybeurl|mediascripturl|guild|guildcount|guildid|prefix|avatar|useravatar|discrim|id|mention|name|nick|randuser|randuserid|randonline|randonlineid|randonlinetag|randusertag|usertag|channel|channelid|channelmention|randchannel|randchannelid|randchannelmention|messagecontent|messagelastid|randmessageid|messageuserid|replycontent|replyuserid|json\\\\.channel|json\\\\.guild|json\\\\.member|json\\\\.memberoruser|json\\\\.message|json\\\\.messagereply|json\\\\.user|and|or|delete|deletechannel|deleteserver|deleteuser|get|getchannel|getglobal|getserver|getuser|set|setchannel|setglobal|setserver|setuser| |foreach|if|iferror|math|abs|cos|e|max|min|pi|sin|tan|media|audio|av|image|iv|video|nsfw|settings|choose|range|indexof|jsonify|len|lower|code|markuptime|newline|oneof|repeat|replace|reverse|substring|upper|url|traversejson|type|bracketleft|bracketright|newline|splitterargument|splitterfunction|tag|tagid|tagname|tagownerid|ismaintag|isfromai|isfromcomponent|unix|unixsnowflake|unixs)\\b"
+        }
+      ]
+    },
+    "special-args":{
+      "patterns": [
+        {
+          "name":"support.function.if.then.nsb",
+          "match": "\\|then\\:"
+        },
+        {
+          "name":"support.function.if.else.nsb",
+          "match": "\\|else\\:"
+        },
+        {
+          "name":"support.function.replace.with.nsb",
+          "match": "\\|with\\:"
+        },
+        {
+          "name":"support.function.replace.in.nsb",
+          "match": "\\|in\\:"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.integer.nsb",
+          "match": "\\b\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.float.nsb",
+          "match": "\\b\\d+\\.\\d+\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.nsb",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.nsb"
+}

@@ -19,7 +19,7 @@
     "grammars": [{
       "language": "nsb",
       "scopeName": "source.nsb",
-      "path": "./syntaxes/nsb.tmLanguage.json"
+      "path": "./tm.json"
     }]
   }
 }
