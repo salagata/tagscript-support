@@ -77,33 +77,44 @@
     },
     {
       "include": "#special-args"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#languages"
     }
   ],
   "repository": {
     "command-names": {
       "patterns": [
         {
-          "name": "support.function.nsb",
-          "match": "\\b(js|javascript|python|py|lua|ai|edit|editurl|imagine|imagineurl|identify|ocr|transcribe|translate|nsfwfilter|api\\\\.create\\\\.reminder|api\\\\.utilities\\\\.locations|api\\\\.utilities\\\\.weather|api\\\\.search\\\\.duckduckgo\\\\.images|api\\\\.search\\\\.imgur|search\\\\.duckduckgo\\\\.images|search\\\\.google\\\\.images|search\\\\.youtube|arg|argsafe|args|argslen|argssafe|attachment|last_attachment|attachmentspoiler|attachmenttext|attachmentvoice|discord|componentjson|componentsontimeout|embedjson|pagejson|download|downloadfromhtml|request|hastebin|ignore|note|eval|evalsilent|exit|mediascript|mediascriptmaybeurl|mediascripturl|guild|guildcount|guildid|prefix|avatar|useravatar|discrim|id|mention|name|nick|randuser|randuserid|randonline|randonlineid|randonlinetag|randusertag|usertag|channel|channelid|channelmention|randchannel|randchannelid|randchannelmention|messagecontent|messagelastid|randmessageid|messageuserid|replycontent|replyuserid|json\\\\.channel|json\\\\.guild|json\\\\.member|json\\\\.memberoruser|json\\\\.message|json\\\\.messagereply|json\\\\.user|and|or|delete|deletechannel|deleteserver|deleteuser|get|getchannel|getglobal|getserver|getuser|set|setchannel|setglobal|setserver|setuser| |foreach|if|iferror|math|abs|cos|e|max|min|pi|sin|tan|media|audio|av|image|iv|video|nsfw|settings|choose|range|indexof|jsonify|len|lower|code|markuptime|newline|oneof|repeat|replace|reverse|substring|upper|url|traversejson|type|bracketleft|bracketright|newline|splitterargument|splitterfunction|tag|tagid|tagname|tagownerid|ismaintag|isfromai|isfromcomponent|unix|unixsnowflake|unixs)\\b"
+          "name": "entity.name.function",
+					"match": "\\b(ai|edit|editurl|imagine|imagineurl|identify|ocr|transcribe|translate|nsfwfilter|api\\\\.create\\\\.reminder|api\\\\.utilities\\\\.locations|api\\\\.utilities\\\\.weather|api\\\\.search\\\\.duckduckgo\\\\.images|api\\\\.search\\\\.imgur|search\\\\.duckduckgo\\\\.images|search\\\\.google\\\\.images|search\\\\.youtube|arg|argsafe|args|argslen|argssafe|attachment|last_attachment|attachmentspoiler|attachmenttext|attachmentvoice|discord|componentjson|componentsontimeout|embedjson|pagejson|download|downloadfromhtml|request|hastebin|ignore|note|eval|evalsilent|exit|mediascript|mediascriptmaybeurl|mediascripturl|guild|guildcount|guildid|prefix|avatar|useravatar|discrim|id|mention|name|nick|randuser|randuserid|randonline|randonlineid|randonlinetag|randusertag|usertag|channel|channelid|channelmention|randchannel|randchannelid|randchannelmention|messagecontent|messagelastid|randmessageid|messageuserid|replycontent|replyuserid|json\\\\.channel|json\\\\.guild|json\\\\.member|json\\\\.memberoruser|json\\\\.message|json\\\\.messagereply|json\\\\.user|and|or|delete|deletechannel|deleteserver|deleteuser|get|getchannel|getglobal|getserver|getuser|set|setchannel|setglobal|setserver|setuser| |foreach|if|iferror|math|abs|cos|e|max|min|pi|sin|tan|media|audio|av|image|iv|video|nsfw|settings|choose|range|indexof|jsonify|len|lower|code|markuptime|newline|oneof|repeat|replace|reverse|substring|upper|url|traversejson|type|bracketleft|bracketright|newline|splitterargument|splitterfunction|tag|tagid|tagname|tagownerid|ismaintag|isfromai|isfromcomponent|unix|unixsnowflake|unixs)\\b"
         }
+      ]
+    },
+    "languages":{
+      "patterns": [
+        {}
       ]
     },
     "special-args":{
       "patterns": [
         {
-          "name":"support.function.if.then.nsb",
+          "name":"entity.name.function.if.then.nsb",
           "match": "\\|then\\:"
         },
         {
-          "name":"support.function.if.else.nsb",
+          "name":"entity.name.function.if.else.nsb",
           "match": "\\|else\\:"
         },
         {
-          "name":"support.function.replace.with.nsb",
+          "name":"entity.name.function.replace.with.nsb",
           "match": "\\|with\\:"
         },
         {
-          "name":"support.function.replace.in.nsb",
+          "name":"entity.name.function.replace.in.nsb",
           "match": "\\|in\\:"
         }
       ]
@@ -125,6 +136,21 @@
         {
           "name": "constant.language.boolean.nsb",
           "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\{(if)\\:.*\\|(=|!=|<|<=|>|>=|~)\\|",
+          "captures": {
+            "1": {
+              "name":"entity.name.function"
+            },
+            "2": {
+              "name":"keyword.operator"
+            }
+          }
         }
       ]
     }
