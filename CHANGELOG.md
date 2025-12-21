@@ -9,25 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Snippets
 
-## 0.1.1
+## [0.1.1]
 
 ## Added
 
 - Support for {if} and {replace} sub-functions
 
-## 0.1.0
+## [0.1.0]
 
 ## Changed
 
 - The structure of TextMate Language
 
-## 0.0.2
+## [0.0.2]
 
 ### Added
 
 - Syntax Highlight for commands and symbols
 - Config
 
-## 0.0.1 
+## [0.0.1]
 
 - Initial release

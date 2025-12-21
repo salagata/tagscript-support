@@ -1,5 +1,8 @@
 {
   "name": "tagscript-support",
+  "scripts": {
+    "test": "vscode-test"
+  },
   "displayName": "NotSoBot TagScript Support",
   "description": "NotSoBot TagScript Support based on the web-version, but for VSCode, adding syntax hightlight, code snippets, and more.",
   "version": "0.0.1",
@@ -7,19 +10,37 @@
     "vscode": "^1.107.0"
   },
   "categories": [
-    "Programming Languages","Snippets"
+    "Programming Languages",
+    "Snippets"
   ],
   "contributes": {
-    "languages": [{
-      "id": "nsb",
-      "aliases": ["NotSoBot TagScript Script", "NotSoBot TagScript", "nsb"],
-      "extensions": [".nsb",".nstb",".mnsb",".mnstb"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "nsb",
-      "scopeName": "source.nsb",
-      "path": "./syntaxes/nsb.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "nsb",
+        "aliases": [
+          "NotSoBot TagScript Script",
+          "NotSoBot TagScript",
+          "nsb"
+        ],
+        "extensions": [
+          ".nsb",
+          ".nstb",
+          ".mnsb",
+          ".mnstb"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nsb",
+        "scopeName": "source.nsb",
+        "path": "./syntaxes/nsb.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
   }
 }
