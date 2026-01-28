@@ -3,6 +3,7 @@
   "scripts": {
     "test": "vscode-test"
   },
+	"icon": "icon.png",
   "displayName": "NotSoBot TagScript Support",
   "description": "NotSoBot TagScript Support based on the web-version, but for VSCode, adding syntax hightlight, code snippets, and more.",
   "version": "0.0.1",
@@ -36,6 +37,16 @@
         "language": "nsb",
         "scopeName": "source.nsb",
         "path": "./syntaxes/nsb.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "nsb",
+        "path": "./snippets/tagscript.json"
+      },
+      {
+        "language": "nsb",
+        "path": "./snippets/advanced_tagscript.json"
       }
     ]
   }

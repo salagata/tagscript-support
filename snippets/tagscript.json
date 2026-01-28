@@ -1,0 +1,96 @@
+{
+	"Username": {
+		"prefix": "user",
+		"body": [
+			"{user$1}"
+		],
+		"description": "Fetch the username of self/someone (Basic NotSoBot TagScript #1)"
+	},
+	"ID": {
+		"prefix": "id",
+		"body": [
+			"{id$1}"
+		],
+		"description": "Fetch the ID of self/someone (Basic NotSoBot TagScript #1)"
+	},
+	"Args": {
+		"prefix": "args",
+		"body": [
+			"{args}"
+		],
+		"description": "Get the arguments (Basic NotSoBot TagScript #2)"
+	},
+	"Set Variable": {
+		"prefix":"set",
+		"body": [
+			"{set:$1|$2}$0"
+		],
+		"description": "Set the value of a variable (Basic NotSoBot TagScript #3)"
+	},
+	"Get Variable": {
+		"prefix":"get",
+		"body": [
+			"{get:$1}"
+		],
+		"description": "Gets the value of a variable (Basic NotSoBot TagScript #3)"
+	},
+	"Delete Variable": {
+		"prefix":"delete",
+		"body": [
+			"{delete:$1}"
+		],
+		"description": "Deletes the value of a variable (Basic NotSoBot TagScript #3)"
+	},
+	"If Then": {
+		"prefix": "if",
+		"body": [
+			"{if:$1|${2:=}|$3|then:",
+			"\t$0",
+			"}"
+		],
+		"description": "If-Then statement (Basic NotSoBot TagScript #4)"
+	},
+	"If Else": {
+		"prefix": "if",
+		"body": [
+			"{if:$1|${2:=}|$3|then:",
+			"\t$4",
+			"|else:",
+			"\t$0",
+			"}"
+		],
+		"description": "If-Else statement (Basic NotSoBot TagScript #4)"
+	},
+	"Label": {
+		"prefix": "label",
+		"body": [
+			"{set:@$1|{ignore:",
+			"\t$0",
+			"}}"
+		],
+		"description": "Inits a Label (Basic NotSoBot TagScript #5)"
+	},
+	"GoTo": {
+		"prefix": "goto",
+		"body": [
+			"{eval:{get:@$1}}"
+		],
+		"description": "Jumps to a Label previously defined and returns (Basic NotSoBot TagScript #5)"
+	},
+	"Import": {
+		"prefix": "import",
+		"body": [
+			"{eval:{text:$1}}"
+		],
+		"description": "Import a module (Basic NotSoBot TagScript #6)"
+	},
+	"MediaScript": {
+		"prefix": "mediascript",
+		"body": [
+			"{mediascript:load $1",
+			"\t$0",
+			"render $2}"
+		],
+		"description": "Eval MediaScript (Basic NotSoBot TagScript #6)"
+	}
+}

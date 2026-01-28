@@ -1,0 +1,53 @@
+{
+	"TagScript Doc": {
+		"prefix": "notedoc",
+		"body": [
+			"{note::$1}$0"
+		],
+		"description": "Generates the Docs Comment (Advanced NotSoBot TagScript #1)"
+	},
+	"Function": {
+		"prefix": "function",
+		"body": [
+			"{set:$1()|{ignore:",
+			"\t$0",
+			"}}"
+		],
+		"description": "Inits a Function (Advanced NotSoBot TagScript #1)"
+	},
+	"Call": {
+		"prefix": "call",
+		"body": [
+			"{eval:{get:$1()}}$0"
+		],
+		"description": "Calls a function (Advanced NotSoBot TagScript #1)"
+	},
+	"Set Argument": {
+		"prefix":"setarg",
+		"body": [
+			"{set:$1($2)|$3}$0"
+		],
+		"description": "Set an argument for the function (Advanced NotSoBot TagScript #1)"
+	},
+	"Get Argument": {
+		"prefix":"getarg",
+		"body": [
+			"{get:$1($2)}$0"
+		],
+		"description": "Gets an argument of the function (Advanced NotSoBot TagScript #1)"
+	},
+	"Delete Argument": {
+		"prefix":"deletearg",
+		"body": [
+			"{delete:$1($2)}$0"
+		],
+		"description": "Deletes an argument when ending the function (Advanced NotSoBot TagScript #1)"
+	},
+	"Return": {
+		"prefix":"deletearg",
+		"body": [
+			"{set:retx|$1}$0"
+		],
+		"description": "Returns a value when ending the function (Advanced NotSoBot TagScript #1)"
+	}
+}

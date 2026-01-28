@@ -2,15 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "NotSoBot TagScript",
   "patterns": [
-    {
-      "name": "comment.line.double-slash.nsb",
-      "match": "//.*$"
-    },
-    {
-      "name": "comment.block.nsb",
-      "begin": "/\\*",
-      "end": "\\*/"
-    },
+    
     {
       "name": "punctuation.brace.curly.open.nsb",
       "match": "\\{"
