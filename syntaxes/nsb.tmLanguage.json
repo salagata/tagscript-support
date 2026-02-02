@@ -75,6 +75,9 @@
     },
     {
       "include": "#languages"
+    },
+    {
+      "include": "#comment"
     }
   ],
   "repository": {
@@ -138,6 +141,23 @@
               "name":"keyword.operator"
             }
           }
+        }
+      ]
+    },
+    "comment": {
+      "begin": "\\{note:",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.comment.nsb" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.comment.nsb" }
+      },
+      "name": "comment.block.nsb",
+      "patterns": [
+        {
+          "name": "comment.block.content.nsb",
+          "match": "[^}]+"
         }
       ]
     }

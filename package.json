@@ -1,5 +1,6 @@
 {
   "name": "tagscript-support",
+  "main": "./extension.js",
   "scripts": {
     "test": "vscode-test"
   },
