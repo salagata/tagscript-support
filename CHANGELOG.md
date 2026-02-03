@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- idk lol
+  - 
+
+## [0.3]
+
+- Completions for commands
+
+## [0.2]
+
 - Snippets
   - Discord API Snippets
-  - 
 
 ## [0.1.1]
 
