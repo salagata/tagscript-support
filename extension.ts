@@ -1,21 +1,29 @@
-const vscode = require('vscode');
+import * as vscode from "vscode";
 
 // Lista de comandos disponibles en NotSoBot TagScript
-const commands = require("./tags.json");
-const completionsArray = {};
+import * as commands from "./tags.json";
+
+
+
+const completionsArray: Record<string,string> = {};
+
 for (const commandName in commands) {
   if (!Object.hasOwn(commands, commandName)) continue;
-  const command = commands[commandName];
-  const commandNameNew = commandName.split("_").map(s => s[0].toUpperCase() + s.slice(1).toLowerCase()).join(" ")
+  const command: string[] = (commands as Record<string,string[]>)[commandName];
+  const commandNameNew: string = commandName.split("_").map(s => s[0].toUpperCase() + s.slice(1).toLowerCase()).join(" ")
   for (const c of command) {
-    completionsArray[c] = commandNameNew;
+    (completionsArray as Record<string,string>)[c] = commandNameNew;
   }
 }
 
 console.log(completionsArray);
 
-class NSBCompletionItemProvider {
-  provideCompletionItems(document, position, token, context) {
+class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
+  public provideCompletionItems(
+    document: vscode.TextDocument, 
+    position: vscode.Position, 
+    token: vscode.CancellationToken, 
+    context: vscode.CompletionContext): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList> {
     // // Obtener la línea actual
     // const linePrefix = document.lineAt(position).text.substring(0, position.character);
     
@@ -29,19 +37,15 @@ class NSBCompletionItemProvider {
 
     // Crear CompletionItems
     return Object.entries(completionsArray).map(cmd => {
-      const item = new vscode.CompletionItem(cmd[0], vscode.CompletionItemKind.Function);
+      const item: vscode.CompletionItem = new vscode.CompletionItem(cmd[0], vscode.CompletionItemKind.Function);
       item.insertText = cmd[0];
       item.detail = cmd[1];
       return item;
     });
   }
-
-  resolveCompletionItem(item, token) {
-    return item;
-  }
 }
 
-function activate(context) {
+export function activate(context: vscode.ExtensionContext) {
   // Registrar el proveedor de completado
   const provider = new NSBCompletionItemProvider();
   const disposable = vscode.languages.registerCompletionItemProvider(
@@ -54,9 +58,4 @@ function activate(context) {
   console.log('NotSoBot TagScript completion provider activated');
 }
 
-function deactivate() {}
-
-module.exports = {
-  activate,
-  deactivate
-};
+export function deactivate() {}

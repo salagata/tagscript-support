@@ -1,15 +1,15 @@
 {
-  "name": "tagscript-support",
-  "main": "./extension.js",
+  "name": "salagata.tagscript-support",
+  "main": "./src/extension.ts",
   "scripts": {
     "test": "vscode-test"
   },
-	"icon": "icon.png",
+  "icon": "icon.png",
   "displayName": "NotSoBot TagScript Support",
   "description": "NotSoBot TagScript Support based on the web-version, but for VSCode, adding syntax hightlight, code snippets, and more.",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.107.0"
+    "vscode": "^1.51.0"
   },
   "categories": [
     "Programming Languages",
@@ -50,5 +50,8 @@
         "path": "./snippets/advanced_tagscript.json"
       }
     ]
+  },
+  "dependencies": {
+    "vscode": "^1.1.37"
   }
 }
