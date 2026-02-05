@@ -17,6 +17,35 @@
         "command": "notsobot-tagscript.helloWorld",
         "title": "Hello World"
       }
+    ],
+    "languages": [
+      {
+        "id": "nsb",
+        "aliases": [
+          "NotSoBot TagScript Script",
+          "NotSoBot TagScript",
+          "nsb"
+        ],
+        "extensions": [".nsb",".mnsb",".nstb"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nsb",
+        "scopeName": "source.nsb",
+        "path": "./syntaxes/nsb.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "nsb",
+        "path": "./snippets/tagscript.json"
+      },
+      {
+        "language": "nsb",
+        "path": "./snippets/advanced_tagscript.json"
+      }
     ]
   },
   "scripts": {
@@ -25,7 +54,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "ts-mocha -p tsconfig.json 'src/**/*.spec.ts'"
   },
   "devDependencies": {
     "@types/vscode": "^1.109.0",
