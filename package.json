@@ -1,21 +1,23 @@
 {
-  "name": "salagata.tagscript-support",
-  "main": "./src/extension.ts",
-  "scripts": {
-    "test": "vscode-test"
-  },
-  "icon": "icon.png",
-  "displayName": "NotSoBot TagScript Support",
-  "description": "NotSoBot TagScript Support based on the web-version, but for VSCode, adding syntax hightlight, code snippets, and more.",
+  "name": "notsobot-tagscript",
+  "displayName": "notsobot-tagscript",
+  "description": "NotSoBot TagScript support in VSCode",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.51.0"
+    "vscode": "^1.50.0"
   },
   "categories": [
-    "Programming Languages",
-    "Snippets"
+    "Other"
   ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
   "contributes": {
+    "commands": [
+      {
+        "command": "notsobot-tagscript.helloWorld",
+        "title": "Hello World"
+      }
+    ],
     "languages": [
       {
         "id": "nsb",
@@ -24,12 +26,7 @@
           "NotSoBot TagScript",
           "nsb"
         ],
-        "extensions": [
-          ".nsb",
-          ".nstb",
-          ".mnsb",
-          ".mnstb"
-        ],
+        "extensions": [".nsb",".mnsb",".nstb"],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -51,7 +48,22 @@
       }
     ]
   },
-  "dependencies": {
-    "vscode": "^1.1.37"
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "ts-mocha -p tsconfig.json 'src/**/*.spec.ts'"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.109.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.54.0",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
   }
 }
