@@ -93,19 +93,19 @@
       "patterns": [
         {
           "name":"entity.name.function.if.then.nsb",
-          "match": "\\|then\\:"
+          "match": "\\then\\:"
         },
         {
           "name":"entity.name.function.if.else.nsb",
-          "match": "\\|else\\:"
+          "match": "\\else\\:"
         },
         {
           "name":"entity.name.function.replace.with.nsb",
-          "match": "\\|with\\:"
+          "match": "\\with\\:"
         },
         {
           "name":"entity.name.function.replace.in.nsb",
-          "match": "\\|in\\:"
+          "match": "\\in\\:"
         }
       ]
     },
