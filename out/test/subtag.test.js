@@ -69,5 +69,10 @@ describe("getSubTagName Tests", () => {
         const result = (0, subtag_1.getSubTagName)(text, 10);
         assert.strictEqual(result, "myTag");
     });
+    it("should handle whitespace correctly", () => {
+        const text = "{  myTag  : value}";
+        const result = (0, subtag_1.getSubTagName)(text, 10);
+        assert.strictEqual(result, "myTag");
+    });
 });
 //# sourceMappingURL=subtag.test.js.map

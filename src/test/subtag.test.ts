@@ -1,6 +1,5 @@
 import * as assert from "assert";
 import { getSubTagName } from "../subtag";
-import { isTypedArray } from "util/types";
 
 describe("getSubTagName Tests", () => {
 	it("should return empty string for cursor out of bounds", () => {
@@ -37,6 +36,12 @@ describe("getSubTagName Tests", () => {
 		assert.strictEqual(result, "outer");
 	});
 
+	it("should handle whitespace correctly", () => {
+		const text: string = "{  myTag  : value}";
+		const result: string = getSubTagName(text, 10);
+		assert.strictEqual(result, "myTag");
+	});
+	
 	it("should handle whitespace correctly", () => {
 		const text: string = "{  myTag  : value}";
 		const result: string = getSubTagName(text, 10);

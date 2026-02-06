@@ -274,8 +274,21 @@ class NSBCompletionItemProvider {
         const textBefore = document.getText(new vscode.Range(new vscode.Position(0, 0), position.translate(0, 1)));
         const cursor = document.offsetAt(position);
         const subTag = (0, subtag_1.getSubTagName)(textBefore, cursor);
+        const subTagCommand = completionsArray[subTag].toUpperCase();
+        switch (subTagCommand) {
+            case "LOGICAL IF":
+                const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);
+                thenScope.insertText = "then:";
+                const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);
+                elseScope.insertText = "else:";
+                return [
+                    thenScope, elseScope
+                ];
+            default:
+                break;
+        }
         // const subTag = getSubTagName(document.lineAtosition).text, position.character);
-        vscode.window.showInformationMessage("You are on: " + subTag);
+        // vscode.window.showInformationMessage("You are on: "+subTag);
         // vscode.window.showInformationMessage();
         return [];
     }
@@ -287,12 +300,12 @@ function activate(context) {
     const provider = new NSBTagCompletionItemProvider();
     const disposable = vscode.languages.registerCompletionItemProvider('nsb', provider, '{');
     context.subscriptions.push(disposable);
-    console.log('NotSoBot TagScript completion provider activated');
+    console.log('NotSoBot TagScript Tag completion provider activated');
     // Registrar el otro proveedor de completado
     const provider2 = new NSBCompletionItemProvider();
     const disposable2 = vscode.languages.registerCompletionItemProvider('nsb', provider2, ':', '|');
     context.subscriptions.push(disposable2);
-    console.log('NotSoBot TagScript Tag completion provider activated');
+    console.log('NotSoBot TagScript completion provider activated');
     // // Use the console to output diagnostic information (console.log) and errors (console.error)
     // // This line of code will only be executed once when your extension is activated
     // console.log('Congratulations, your extension "notsobot-tagscript" is now active!');

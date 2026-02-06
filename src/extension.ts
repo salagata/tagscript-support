@@ -251,9 +251,22 @@ class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
 		
 		
 		const subTag = getSubTagName(textBefore, cursor);
+		const subTagCommand = completionsArray[subTag].toUpperCase();
 		
+		switch (subTagCommand) {
+			case "LOGICAL IF":
+			const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);	
+			thenScope.insertText = "then:";
+			const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);	
+			elseScope.insertText = "else:";
+			return [
+					thenScope,elseScope
+				];
+			default:
+				break;
+		}
 		// const subTag = getSubTagName(document.lineAtosition).text, position.character);
-		vscode.window.showInformationMessage("You are on: "+subTag);
+		// vscode.window.showInformationMessage("You are on: "+subTag);
 		
 
 		// vscode.window.showInformationMessage();
@@ -274,7 +287,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(disposable);
-	console.log('NotSoBot TagScript completion provider activated');
+	console.log('NotSoBot TagScript Tag completion provider activated');
 
 	
 	// Registrar el otro proveedor de completado
@@ -286,7 +299,7 @@ export function activate(context: vscode.ExtensionContext) {
 	);
 
 	context.subscriptions.push(disposable2);
-	console.log('NotSoBot TagScript Tag completion provider activated');
+	console.log('NotSoBot TagScript completion provider activated');
 	// // Use the console to output diagnostic information (console.log) and errors (console.error)
 	// // This line of code will only be executed once when your extension is activated
 	// console.log('Congratulations, your extension "notsobot-tagscript" is now active!');
