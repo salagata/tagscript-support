@@ -3,19 +3,19 @@
         "lineComment": {
             "comment": "#" // for mediascript blocks i guess
         },
-        "blockComment": ["{note:", "}"]
+        "blockComment": ["{note:", "*}"]
     },
     // symbols used as brackets
     "brackets": [
         ["{", "}"],
         ["[", "]"],
-        ["(", ")"]
+        ["(", ")"],
     ],
     // symbols that are auto closed when typing
     "autoClosingPairs": [
-        { "open": "{", "close": "}", "notIn": ["string", "comment"] },
-        { "open": "[", "close": "]", "notIn": ["string", "comment"] },
-        { "open": "(", "close": ")", "notIn": ["string", "comment"] },
+        { "open": "{", "close": "}", "notIn": ["string"] },
+        { "open": "[", "close": "]", "notIn": ["string"] },
+        { "open": "(", "close": ")", "notIn": ["string"] },
         { "open": "\"", "close": "\"", "notIn": ["string"] }
     ],
     "indentationRules": {

@@ -38,7 +38,10 @@
       {
         "language": "nsb",
         "scopeName": "source.nsb",
-        "path": "./syntaxes/nsb.tmLanguage.json"
+        "path": "./syntaxes/nsb.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.javascript": "javascript"
+        }
       }
     ],
     "snippets": [
