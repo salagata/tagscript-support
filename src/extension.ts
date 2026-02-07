@@ -202,7 +202,7 @@ const commands: Record<string, string[]> = {
   "VARIABLES_USER": ["variablesuser"]
 };
 
-import { getSubTagName } from "./subtag";
+import { getScopeData } from "./scope";
 
 
 const completionsArray: Record<string,string> = {};
@@ -250,20 +250,22 @@ class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
 		const cursor = document.offsetAt(position);
 		
 		
-		const subTag = getSubTagName(textBefore, cursor);
-		const subTagCommand = completionsArray[subTag].toUpperCase();
+		const scopeData = getScopeData(textBefore, cursor);
+		const subTagCommand = completionsArray[scopeData.subTagName].toUpperCase();
 		
 		switch (subTagCommand) {
 			case "LOGICAL IF":
-			const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);	
-			thenScope.insertText = "then:";
-			const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);	
-			elseScope.insertText = "else:";
-			return [
-					thenScope,elseScope
-				];
+        if(scopeData.argumentIndex > 2) {
+          const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);	
+          thenScope.insertText = "then:";
+          const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);	
+          elseScope.insertText = "else:";
+          return [
+            thenScope,elseScope
+          ];
+        }
 			default:
-				break;
+				break;  
 		}
 		// const subTag = getSubTagName(document.lineAtosition).text, position.character);
 		// vscode.window.showInformationMessage("You are on: "+subTag);

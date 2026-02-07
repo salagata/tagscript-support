@@ -7,15 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- IntelliSense
-  - Tag scope detector
+- Support for replace structures
+
+## [0.4]
+
+## Added 
+   Tag scope detector
+  - Support for if-then and if-else structures
 
 ## [0.3]
+
+## Added
 
 - Completions for commands
 
 ## [0.2]
 
+## Added
 - Snippets
   - Discord API Snippets
 

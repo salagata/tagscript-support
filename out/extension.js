@@ -237,7 +237,7 @@ const commands = {
     "VARIABLES_SERVER": ["variablesserver"],
     "VARIABLES_USER": ["variablesuser"]
 };
-const subtag_1 = require("./subtag");
+const scope_1 = require("./scope");
 const completionsArray = {};
 for (const commandName in commands) {
     if (!Object.hasOwn(commands, commandName)) {
@@ -273,17 +273,19 @@ class NSBCompletionItemProvider {
     provideCompletionItems(document, position, token, context) {
         const textBefore = document.getText(new vscode.Range(new vscode.Position(0, 0), position.translate(0, 1)));
         const cursor = document.offsetAt(position);
-        const subTag = (0, subtag_1.getSubTagName)(textBefore, cursor);
-        const subTagCommand = completionsArray[subTag].toUpperCase();
+        const scopeData = (0, scope_1.getScopeData)(textBefore, cursor);
+        const subTagCommand = completionsArray[scopeData.subTagName].toUpperCase();
         switch (subTagCommand) {
             case "LOGICAL IF":
-                const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);
-                thenScope.insertText = "then:";
-                const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);
-                elseScope.insertText = "else:";
-                return [
-                    thenScope, elseScope
-                ];
+                if (scopeData.argumentIndex > 2) {
+                    const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);
+                    thenScope.insertText = "then:";
+                    const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);
+                    elseScope.insertText = "else:";
+                    return [
+                        thenScope, elseScope
+                    ];
+                }
             default:
                 break;
         }
