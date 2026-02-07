@@ -1,9 +1,9 @@
 {
     "comments": {
-        // "lineComment": {
-        //     "comment": "//"
-        // },
-        "blockComment": ["{", "}"]
+        "lineComment": {
+            "comment": "#" // for mediascript blocks i guess
+        },
+        "blockComment": ["{note:", "}"]
     },
     // symbols used as brackets
     "brackets": [
@@ -29,5 +29,11 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    "folding": {
+        "markers": {
+            "start": "\\s*\\{\\s*note\\s*:\\s*#?region}",
+            "end": "\\s*\\{\\s*note\\s*:\\s*#?region}"
+        }
+    }
 }

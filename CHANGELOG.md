@@ -8,12 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Support for replace structures
+- Embedded Languages
+
+## [0.4.1]
+
+## Added
+
+- Toggle Comments
 
 ## [0.4]
 
 ## Added 
-   Tag scope detector
+
+Tag scope detector
   - Support for if-then and if-else structures
+
+## Changed
+
+Rewritten syntax
+  - Now it detects comments, and other scopes
 
 ## [0.3]
 
