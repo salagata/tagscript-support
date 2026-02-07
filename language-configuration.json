@@ -3,7 +3,7 @@
         "lineComment": {
             "comment": "#" // for mediascript blocks i guess
         },
-        "blockComment": ["{note:", "*}"]
+        "blockComment": ["{note:", "}"]
     },
     // symbols used as brackets
     "brackets": [

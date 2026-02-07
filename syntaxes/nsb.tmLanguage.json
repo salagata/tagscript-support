@@ -14,9 +14,6 @@
     },
     {
       "include": "#languages"
-    },
-    {
-      "include": "#comment"
     }
   ],
   "firstLineMatch": "what",
@@ -24,10 +21,43 @@
     "expression": {
       "patterns": [
         {
-          "include": "#command-names"
+          "include": "#comment"
         },
         {
           "include": "#tag"
+        },
+        {
+          "include": "#command-names"
+        }
+      ]
+    },
+    "pseudo-expression": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#pseudo-tag"
+        }
+      ]
+    },
+    "pseudo-tag": {
+      "begin": "\\{",
+      "end": "\\}",
+      "name": "comment.block.nsb",
+      "patterns": [
+        {
+          "include": "#pseudo-expression"
+        }
+      ]
+    },
+    "comment": {
+      "begin": "\\{note:",
+      "end": "\\}",
+      "contentName": "comment.block.nsb",
+      "patterns": [
+        {
+          "include": "#pseudo-expression"
         }
       ]
     },
@@ -42,16 +72,6 @@
       },
       "name": "meta.tag.nsb",
       "patterns": [
-        {
-          "begin": "note:",
-          "end": "(?=\\*\\})",
-          "name": "comment.block.nsb"
-        },
-        {
-          "begin": "(js|javascript):",
-          "end": "(?=//\\*\\})",
-          "contentName": "meta.embedded.block.javascript"
-        },
         {
           "include": "#tag-symbols"
         },

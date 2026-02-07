@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for replace structures
 - Embedded Languages
 
+## [0.4.2]
+
+## Fixed
+
+- Comments now match well
+
 ## [0.4.1]
 
 ## Added
