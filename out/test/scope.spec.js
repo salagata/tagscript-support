@@ -169,4 +169,4 @@ describe("Get Arguments-Index Tests", () => {
         });
     });
 });
-//# sourceMappingURL=scope.test.js.map
+//# sourceMappingURL=scope.spec.js.map

@@ -1,3 +1,5 @@
+import { TagSymbols } from "./const/tags";
+
 export function getScopeData(text: string, cursor: number): { subTagName: string, isJsonProperty: boolean, argumentIndex: number} {
     function reverseString(str: string): string {
         return str.split("").reverse().join("");
@@ -18,15 +20,15 @@ export function getScopeData(text: string, cursor: number): { subTagName: string
         if(nextSymbolIndex !== -1) {
             const nextSymbol = reversedText[nextSymbolIndex];
             switch (nextSymbol) {
-                case "}":
+                case TagSymbols.BRACKET_RIGHT:
                     depth++;
                     break;
             
-                case "{":
+                case TagSymbols.BRACKET_LEFT:
                     depth--;
                     break;
                     
-                case "|":
+                case TagSymbols.SPLITTER_ARGUMENT:
                     if(depth === 0) {
                         argumentIndex++;
                     }
@@ -42,7 +44,7 @@ export function getScopeData(text: string, cursor: number): { subTagName: string
         position = nextSymbolIndex;
         
     }
-    const splitterFunctionPosition = reversedText.lastIndexOf(":",position);
+    const splitterFunctionPosition = reversedText.lastIndexOf(TagSymbols.SPLITTER_FUNCTION,position);
     let subTagName = reverseString(reversedText.slice(splitterFunctionPosition,position).slice(1)).trim();
     let isJsonProperty = false;
     if(subTagName.startsWith('"') && subTagName.endsWith('"')) {

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getScopeData = getScopeData;
+const tags_1 = require("./const/tags");
 function getScopeData(text, cursor) {
     function reverseString(str) {
         return str.split("").reverse().join("");
@@ -17,13 +18,13 @@ function getScopeData(text, cursor) {
         if (nextSymbolIndex !== -1) {
             const nextSymbol = reversedText[nextSymbolIndex];
             switch (nextSymbol) {
-                case "}":
+                case tags_1.TagSymbols.BRACKET_RIGHT:
                     depth++;
                     break;
-                case "{":
+                case tags_1.TagSymbols.BRACKET_LEFT:
                     depth--;
                     break;
-                case "|":
+                case tags_1.TagSymbols.SPLITTER_ARGUMENT:
                     if (depth === 0) {
                         argumentIndex++;
                     }
@@ -39,7 +40,7 @@ function getScopeData(text, cursor) {
         }
         position = nextSymbolIndex;
     }
-    const splitterFunctionPosition = reversedText.lastIndexOf(":", position);
+    const splitterFunctionPosition = reversedText.lastIndexOf(tags_1.TagSymbols.SPLITTER_FUNCTION, position);
     let subTagName = reverseString(reversedText.slice(splitterFunctionPosition, position).slice(1)).trim();
     let isJsonProperty = false;
     if (subTagName.startsWith('"') && subTagName.endsWith('"')) {

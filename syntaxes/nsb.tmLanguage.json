@@ -24,6 +24,9 @@
           "include": "#comment"
         },
         {
+          "include": "#javascript"
+        },
+        {
           "include": "#tag"
         },
         {
@@ -31,6 +34,41 @@
         }
       ]
     },
+
+    "javascript-expression": {
+      "patterns": [
+        {
+          "include": "#javascript"
+        },
+        {
+          "include": "#javascript-tag"
+        }
+      ]
+    },
+    "javascript-tag": {
+      "begin": "\\{",
+      "end": "\\}",
+      "contentName": "meta.embedded.block.javascript",
+      "patterns": [
+        {
+          "include": "#javascript-expression"
+        }
+      ]
+    },
+    "javascript": {
+      "begin": "\\{js:",
+      "end": "\\}",
+      "contentName": "meta.embedded.block.javascript",
+      "patterns": [
+        {
+          "include": "#javascript-expression"
+        },
+        {
+          "include": "#javascript-expression"
+        }
+      ]
+    },
+
     "pseudo-expression": {
       "patterns": [
         {
