@@ -45,22 +45,55 @@ class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
 		
 		switch (subTagCommand) {
 			case TagFunctions.LOGICAL_IF:
-        if(scopeData.argumentIndex > 2) {
-          const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);	
-          thenScope.insertText = "then:";
-          const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);	
-          elseScope.insertText = "else:";
-          return [
-            thenScope,elseScope
-          ];
-        } else if(scopeData.argumentIndex === 1) {
-          return Object.entries(TagIfComparisons).map(cmd => {
-            const item: vscode.CompletionItem = new vscode.CompletionItem(cmd[1], vscode.CompletionItemKind.Operator);
-            item.insertText = cmd[1];
-            item.detail = cmd[0];
-            return item;
-          });
-        }
+				if(scopeData.argumentIndex > 2) {
+					const thenScope = new vscode.CompletionItem("then", vscode.CompletionItemKind.Function);	
+					thenScope.insertText = "then:";
+					const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);	
+					elseScope.insertText = "else:";
+					return [
+						thenScope,elseScope
+					];
+				} else if(scopeData.argumentIndex === 1) {
+					return Object.entries(TagIfComparisons).map(cmd => {
+						const item: vscode.CompletionItem = new vscode.CompletionItem(cmd[1], vscode.CompletionItemKind.Operator);
+						item.insertText = cmd[1];
+						item.detail = cmd[0];
+						return item;
+					});
+				} else {
+					break;
+				}
+			case TagFunctions.TYPE:
+				if(scopeData.argumentIndex === 0) {
+					const numberScope = new vscode.CompletionItem("number", vscode.CompletionItemKind.Function);	
+					numberScope.insertText = "number|";
+					numberScope.detail = "Integer Number";
+					const floatScope = new vscode.CompletionItem("float", vscode.CompletionItemKind.Function);	
+					floatScope.insertText = "float|";
+					floatScope.detail = "Float Number";
+					return [
+						numberScope,floatScope
+					];
+				} 
+			case TagFunctions.STRING_REPLACE:
+				if(scopeData.argumentIndex > 0) {
+					const withScope = new vscode.CompletionItem("with", vscode.CompletionItemKind.Function);	
+					withScope.insertText = "with:";
+					const inScope = new vscode.CompletionItem("in", vscode.CompletionItemKind.Function);	
+					inScope.insertText = "in:";
+					return [
+						withScope,inScope
+					];
+				} 
+			case TagFunctions.STRING_MARKUP_TIME:
+				if(scopeData.argumentIndex > 0) {
+					return ["BOTH_LONG","BOTH_SHORT","DATE_LONG","DATE_SHORT","RELATIVE","TIME_LONG","TIME_SHORT"].map(cmd => {
+						const item: vscode.CompletionItem = new vscode.CompletionItem(cmd, vscode.CompletionItemKind.Function);
+						item.insertText = cmd;
+						return item;
+					});
+				} 
+
 			default:
 				break;  
 		}

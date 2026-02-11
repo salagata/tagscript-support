@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Support for replace structures
 - Embedded Languages
+
+## [0.4.3]
+
+## Added 
+- Completion for STRING_REPLACE structures
+- Completion for STRING_MARKUP_TIME modes
 
 ## [0.4.2]
 

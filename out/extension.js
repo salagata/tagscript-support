@@ -85,6 +85,39 @@ class NSBCompletionItemProvider {
                         return item;
                     });
                 }
+                else {
+                    break;
+                }
+            case tags_1.TagFunctions.TYPE:
+                if (scopeData.argumentIndex === 0) {
+                    const numberScope = new vscode.CompletionItem("number", vscode.CompletionItemKind.Function);
+                    numberScope.insertText = "number|";
+                    numberScope.detail = "Integer Number";
+                    const floatScope = new vscode.CompletionItem("float", vscode.CompletionItemKind.Function);
+                    floatScope.insertText = "float|";
+                    floatScope.detail = "Float Number";
+                    return [
+                        numberScope, floatScope
+                    ];
+                }
+            case tags_1.TagFunctions.STRING_REPLACE:
+                if (scopeData.argumentIndex > 0) {
+                    const withScope = new vscode.CompletionItem("with", vscode.CompletionItemKind.Function);
+                    withScope.insertText = "with:";
+                    const inScope = new vscode.CompletionItem("in", vscode.CompletionItemKind.Function);
+                    inScope.insertText = "in:";
+                    return [
+                        withScope, inScope
+                    ];
+                }
+            case tags_1.TagFunctions.STRING_MARKUP_TIME:
+                if (scopeData.argumentIndex > 0) {
+                    return ["BOTH_LONG", "BOTH_SHORT", "DATE_LONG", "DATE_SHORT", "RELATIVE", "TIME_LONG", "TIME_SHORT"].map(cmd => {
+                        const item = new vscode.CompletionItem(cmd, vscode.CompletionItemKind.Function);
+                        item.insertText = cmd;
+                        return item;
+                    });
+                }
             default:
                 break;
         }
