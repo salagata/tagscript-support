@@ -24,6 +24,12 @@
           "include": "#comment"
         },
         {
+          "include": "#logical-if"
+        },
+        {
+          "include": "#string-replace"
+        },
+        {
           "include": "#javascript"
         },
         {
@@ -31,6 +37,9 @@
         },
         {
           "include": "#command-names"
+        },
+        {
+          "include": "#function-names"
         }
       ]
     },
@@ -99,6 +108,47 @@
         }
       ]
     },
+    "logical-if": {
+      "begin": "\\{(if):",
+      "beginCaptures": {
+        "0": { "name": "punctuation.brace.curly.open.nsb" },
+        "1": { "name": "keyword.command.nsb" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.brace.curly.close.nsb" }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
+        },
+        {
+        "name": "keyword.command.nsb",
+          "match": "(?<=\\|)\\b(then|else|finally)\\b(?=\\:)"
+        }
+      ]
+    },
+    "string-replace": {
+      "begin": "\\{(replace):",
+      "beginCaptures": {
+        "0": { "name": "punctuation.brace.curly.open.nsb" },
+        "1": { "name": "entity.name.function" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.brace.curly.close.nsb" }
+      },
+      "contentName": "entity.name.function.nsb",
+      "patterns": [
+        {
+          "include": "#expression"
+        },
+        {
+          "name":"entity.name.function.nsb",
+          "match": "(?<=\\|)\\b(with|in)\\b(?=\\:)"
+        }
+      ]
+    },
     "tag": {
       "begin": "\\{",
       "beginCaptures": {
@@ -129,7 +179,11 @@
     },
     "command-names": {
         "name": "keyword.command.nsb",
-        "match": "\\b(ignore|note|ai|api\\.create\\.reminder|api\\.search\\.duckduckgo\\.images|api\\.search\\.imgur|api\\.utilities\\.locations|api\\.utilities\\.weather|arg|argsafe|args|argslen|argssafe|attachment|attach|file|last_attachment|lastattachment|lattachment|lattach|attachmentspoiler|attachspoiler|filespoiler|attachmenttext|attachtext|filetext|attachmentvoice|attachvoice|filevoice|avatar|channel|channelid|channelmention|randchannel|randchannelid|randchannelmention|componentjson|componentsontimeout|discord|embedjson|eval|evalsilent|exit|exitsilent|guild|server|guildcount|membercount|servercount|guildid|serverid|sid|gid|hastebin|haste|identify|interrogate|ocr|bracketleft|bracketright|newline|splitterargument|splitterfunction|json\\.channel|channeljson|json\\.guild|json\\.member|json\\.memberoruser|json\\.message|json\\.messagereply|json\\.user|userjson|and|delete|deletechannel|deleteserver|deleteuser|foreach|get|getchannel|getglobal|getserver|getuser|if|iferror|isfromai|isfromcomponent|ismaintag|or|set|setchannel|setglobal|setserver|setuser|math|abs|cos|e|max|min|pi|sin|tan|media|audio|av|image|edit|editurl|imagine|imagineurl|iv|mediascript|mscript|imagescript|iscript|mediascriptmaybeurl|mscriptmaybeurl|imagescriptmaybeurl|iscriptmaybeurl|mediascripturl|mscripturl|imagescripturl|iscripturl|video|messagecontent|messagelastid|randmessageid|messageuserid|nsfw|nsfwfilter|pagejson|prefix|replycontent|replyuserid|request|choose|range|random|rnd|search\\.duckduckgo\\.images|search\\.ddg\\.images|s\\.duckduckgo\\.images|s\\.ddg\\.images|search\\.google\\.images|search\\.g\\.images|s\\.google\\.images|s\\.g\\.images|search\\.youtube|search\\.yt|s\\.youtube|s\\.yt|settings|indexof|jsonify|len|length|lower|markupbold|code|markupcodeblock|markupcodestring|markupescape|markupheaderbig|markupheadermedium|markupheadersmall|markupitalics|markuplistdotted|markuplistnumbered|markupquote|markupspoiler|markupstrike|markupsubtext|markuptime|markupunderline|markupurl|oneof|repeat|replace|replaceregex|reverse|substring|translate|upper|url|urlencode|tag|tagid|tagname|tagownerid|download|text|downloadfromhtml|textfromhtml|unix|unixsnowflake|unixs|transcribe|traversejson|type|useravatar|discrim|id|userid|mention|name|user|nick|randuser|randuserid|randonline|randonlineid|randonlinetag|randusertag|usertag|variables|variableschannel|variablesglobal|variablesserver|variablesuser)\\b"
+        "match": "\\b(ignore|note|and|foreach|get|getchannel|getglobal|getserver|getuser|if|iferror|or|choose|indexof|substring|componentsontimeout)\\b"
+    },
+    "function-names": {
+        "name": "entity.name.function.nsb",
+        "match": "\\b(ai|api\\.create\\.reminder|api\\.search\\.duckduckgo\\.images|api\\.search\\.imgur|api\\.utilities\\.locations|api\\.utilities\\.weather|arg|argsafe|args|argslen|argssafe|attachment|attach|file|last_attachment|lastattachment|lattachment|lattach|attachmentspoiler|attachspoiler|filespoiler|attachmenttext|attachtext|filetext|attachmentvoice|attachvoice|filevoice|avatar|channel|channelid|channelmention|randchannel|randchannelid|randchannelmention|componentjson|discord|embedjson|eval|evalsilent|exit|exitsilent|guild|server|guildcount|membercount|servercount|guildid|serverid|sid|gid|hastebin|haste|identify|interrogate|ocr|bracketleft|bracketright|newline|splitterargument|splitterfunction|json\\.channel|channeljson|json\\.guild|json\\.member|json\\.memberoruser|json\\.message|json\\.messagereply|json\\.user|userjson|delete|deletechannel|deleteserver|deleteuser|getuser|isfromai|isfromcomponent|ismaintag|set|setchannel|setglobal|setserver|setuser|math|abs|cos|e|max|min|pi|sin|tan|media|audio|av|image|edit|editurl|imagine|imagineurl|iv|mediascript|mscript|imagescript|iscript|mediascriptmaybeurl|mscriptmaybeurl|imagescriptmaybeurl|iscriptmaybeurl|mediascripturl|mscripturl|imagescripturl|iscripturl|video|messagecontent|messagelastid|randmessageid|messageuserid|nsfw|nsfwfilter|pagejson|prefix|replycontent|replyuserid|request|range|random|rnd|search\\.duckduckgo\\.images|search\\.ddg\\.images|s\\.duckduckgo\\.images|s\\.ddg\\.images|search\\.google\\.images|search\\.g\\.images|s\\.google\\.images|s\\.g\\.images|search\\.youtube|search\\.yt|s\\.youtube|s\\.yt|settings|jsonify|len|length|lower|markupbold|code|markupcodeblock|markupcodestring|markupescape|markupheaderbig|markupheadermedium|markupheadersmall|markupitalics|markuplistdotted|markuplistnumbered|markupquote|markupspoiler|markupstrike|markupsubtext|markuptime|markupunderline|markupurl|oneof|repeat|replace|replaceregex|reverse|translate|upper|url|urlencode|tag|tagid|tagname|tagownerid|download|text|downloadfromhtml|textfromhtml|unix|unixsnowflake|unixs|transcribe|traversejson|type|useravatar|discrim|id|userid|mention|name|user|nick|randuser|randuserid|randonline|randonlineid|randonlinetag|randusertag|usertag|variables|variableschannel|variablesglobal|variablesserver|variablesuser)\\b"
     },
     "tag-symbols":{
       "patterns": [

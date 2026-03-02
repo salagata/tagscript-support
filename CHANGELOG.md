@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Embedded Languages
 
+## [0.5]
+
+## Added
+- IntelliSense for variables
+
 ## [0.4.3]
 
 ## Added 

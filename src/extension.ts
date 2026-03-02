@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 // Lista de comandos disponibles en NotSoBot TagScript
 import { TagFunctions, TagFunctionsToString, StringToTagFunction, TagIfComparisons } from './const/tags';
 import { getScopeData } from "./scope";
+import { scanForVariables } from './parse';
 
 class NSBTagCompletionItemProvider implements vscode.CompletionItemProvider {
   public provideCompletionItems(
@@ -50,8 +51,10 @@ class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
 					thenScope.insertText = "then:";
 					const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);	
 					elseScope.insertText = "else:";
+					const finallyScope = new vscode.CompletionItem("finally", vscode.CompletionItemKind.Function);	
+					finallyScope.insertText = "finally:";
 					return [
-						thenScope,elseScope
+						thenScope,elseScope,finallyScope
 					];
 				} else if(scopeData.argumentIndex === 1) {
 					return Object.entries(TagIfComparisons).map(cmd => {
@@ -93,7 +96,19 @@ class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
 						return item;
 					});
 				} 
-
+			case TagFunctions.LOGICAL_GET:
+				const wholeCode = document.getText();
+				const variables = scanForVariables(wholeCode).variables;
+				return variables.map(cmd => {
+					const item = cmd.startsWith("__")
+						? new vscode.CompletionItem(cmd,vscode.CompletionItemKind.Constant)
+						: new vscode.CompletionItem(cmd,vscode.CompletionItemKind.Variable);
+					item.insertText = cmd;
+					item.detail = cmd.startsWith("__")
+						? "(private) set " + cmd
+						: "set " + cmd;
+					return item;
+				});
 			default:
 				break;  
 		}
@@ -106,6 +121,7 @@ class NSBCompletionItemProvider implements vscode.CompletionItemProvider {
 	}
 	
 }
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {

@@ -41,6 +41,7 @@ const vscode = __importStar(require("vscode"));
 // Lista de comandos disponibles en NotSoBot TagScript
 const tags_1 = require("./const/tags");
 const scope_1 = require("./scope");
+const parse_1 = require("./parse");
 class NSBTagCompletionItemProvider {
     provideCompletionItems(document, position, token, context) {
         // // Obtener la línea actual
@@ -73,8 +74,10 @@ class NSBCompletionItemProvider {
                     thenScope.insertText = "then:";
                     const elseScope = new vscode.CompletionItem("else", vscode.CompletionItemKind.Function);
                     elseScope.insertText = "else:";
+                    const finallyScope = new vscode.CompletionItem("finally", vscode.CompletionItemKind.Function);
+                    finallyScope.insertText = "finally:";
                     return [
-                        thenScope, elseScope
+                        thenScope, elseScope, finallyScope
                     ];
                 }
                 else if (scopeData.argumentIndex === 1) {
@@ -118,6 +121,19 @@ class NSBCompletionItemProvider {
                         return item;
                     });
                 }
+            case tags_1.TagFunctions.LOGICAL_GET:
+                const wholeCode = document.getText();
+                const variables = (0, parse_1.scanForVariables)(wholeCode).variables;
+                return variables.map(cmd => {
+                    const item = cmd.startsWith("__")
+                        ? new vscode.CompletionItem(cmd, vscode.CompletionItemKind.Constant)
+                        : new vscode.CompletionItem(cmd, vscode.CompletionItemKind.Variable);
+                    item.insertText = cmd;
+                    item.detail = cmd.startsWith("__")
+                        ? "(private) set " + cmd
+                        : "set " + cmd;
+                    return item;
+                });
             default:
                 break;
         }
